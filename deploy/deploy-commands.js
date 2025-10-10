@@ -17,7 +17,8 @@ const rest = new REST({ version: '10' }).setToken(process.env.BOT_TOKEN);
     try {
     console.log('Started refreshing application (/) commands.');
     await rest.put(
-      Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID), // 테스트 서버용
+        Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID), // 테스트 서버용
+        // Routes.applicationCommands(process.env.CLIENT_ID), // 글로벌용
         { body: commands },
     );
     console.log('Successfully reloaded application (/) commands.');
