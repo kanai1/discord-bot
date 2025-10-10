@@ -2,6 +2,7 @@ require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
+const registerCommandHandler = require(path.join(process.cwd(), 'src/commandHandler'));
 
 // 봇 클라이언트 생성
 const client = new Client({
@@ -26,19 +27,7 @@ client.once('clientReady', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.on('interactionCreate', async interaction => {
-    if (!interaction.isChatInputCommand()) return;
-
-    const command = client.commands.get(interaction.commandName);
-    if (!command) return;
-
-    try {
-        await command.execute(interaction);
-    } catch (error) {
-        console.error(error);
-        await interaction.reply({ content: '오류가 발생했습니다!', ephemeral: true });
-    }
-});
+registerCommandHandler(client);
 
 // 봇 로그인
 client.login(process.env.BOT_TOKEN);
