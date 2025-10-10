@@ -1,5 +1,6 @@
 require('dotenv').config();
 const fs = require('fs');
+const path = require('path');
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
 
 // 봇 클라이언트 생성
@@ -14,9 +15,9 @@ const client = new Client({
 client.commands = new Collection();
 
 // 명령어 로딩
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+const commandFiles = fs.readdirSync(path.join(process.cwd(), 'commands')).filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
-    const command = require(`./commands/${file}`);
+    const command = require(path.join(process.cwd(), `commands/${file}`));
     client.commands.set(command.data.name, command);
 }
 
