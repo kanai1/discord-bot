@@ -1,6 +1,7 @@
 const path = require('path');
 const { SlashCommandBuilder, EmbedBuilder, MessageFlags } = require('discord.js');
 const sysinfo = require(path.join(process.cwd(), 'src/handlers/sysinfo'));
+const { BOT_COLOR } = require(path.join(process.cwd(), 'configs/constants'));
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -17,7 +18,7 @@ module.exports = {
                 { name: '메모리 사용량', value: stats.memUsage },
                 { name: '디스크 사용량', value: stats.diskUsage}
             )
-            .setColor(0x00AFFF)
+            .setColor(BOT_COLOR)
             .setTimestamp();
 
         await interaction.editReply({
