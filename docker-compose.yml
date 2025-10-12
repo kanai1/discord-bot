@@ -11,3 +11,9 @@ services:
     env_file:
       - .env   # 환경변수 파일
     command: sh -c "npm install && npm run start"
+    networks:
+      - home_net
+
+networks:
+  home_net:
+    external: true
