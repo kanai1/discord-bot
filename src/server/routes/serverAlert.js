@@ -6,8 +6,8 @@ const {sendMessagetoUser} = require(path.join(process.cwd(), 'src/handlers/messa
 module.exports = function testRoute() {
     const router = express.Router();
     router.post('/', (req, res) => {
-        const { cpuUsage, memUsage, diskUsage, cpuTemp } = req.body;
-        const embed = createServerMonitorEmbed(cpuUsage, memUsage, diskUsage, cpuTemp); 
+        const { cpu, mem, disk, sensors } = req.body;
+        const embed = createServerMonitorEmbed(cpu, mem, disk, sensors); 
         
         sendMessagetoUser(process.env.MASTER_ID, { embeds: [embed] });
         res.status(200).send('Alert received');
