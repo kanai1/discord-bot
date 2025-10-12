@@ -7,11 +7,12 @@ module.exports = function testRoute() {
     const router = express.Router();
     router.post('/', (req, res) => {
         const { cpu, mem, disk, sensor } = req.body;
-        console.log(req.body);
-        console.log(cpu, mem, disk, sensor);
         const embed = createServerMonitorEmbed(cpu, mem, disk, sensor); 
         
-        sendMessagetoUser(process.env.MASTER_ID, { embeds: [embed] });
+        sendMessagetoUser(process.env.MASTER_ID, {
+            content: '⚠️서버 경고 알림⚠️',
+            embeds: [embed] 
+            });
         res.status(200).send('Alert received');
     });
     return router;
