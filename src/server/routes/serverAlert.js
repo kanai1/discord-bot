@@ -7,6 +7,8 @@ module.exports = function testRoute() {
     const router = express.Router();
     router.post('/', (req, res) => {
         const { cpu, mem, disk, sensors } = req.body;
+        console.log(req.body);
+        console.log(cpu, mem, disk, sensors);
         const embed = createServerMonitorEmbed(cpu, mem, disk, sensors); 
         
         sendMessagetoUser(process.env.MASTER_ID, { embeds: [embed] });
