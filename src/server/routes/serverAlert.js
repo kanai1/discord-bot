@@ -1,0 +1,16 @@
+const express = require('express');
+const path = require('path');
+const createServerMonitorEmbed = require(path.join(process.cwd(), 'src/handlers/embedMaker'));
+const {sendMessagetoUser} = require(path.join(process.cwd(), 'src/handlers/messageSender'));
+
+module.exports = function testRoute() {
+    const router = express.Router();
+    router.post('/', (req, res) => {
+        const { cpuUsage, memUsage, diskUsage, cpuTemp } = req.body;
+        const embed = createServerMonitorEmbed(cpuUsage, memUsage, diskUsage, cpuTemp); 
+        
+        sendMessagetoUser(process.env.MASTER_ID, { embeds: [embed] });
+        res.status(200).send('Alert received');
+    });
+    return router;
+};

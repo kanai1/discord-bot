@@ -1,26 +1,16 @@
 const path = require('path');
-const { SlashCommandBuilder, EmbedBuilder, MessageFlags } = require('discord.js');
+const { SlashCommandBuilder, MessageFlags } = require('discord.js');
 const sysinfo = require(path.join(process.cwd(), 'src/handlers/sysinfo'));
-const { BOT_COLOR } = require(path.join(process.cwd(), 'configs/constants'));
+const createServerMonitorEmbed = require(path.join(process.cwd(), 'src/handlers/embedMaker'));
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('serverstatus')
-        .setDescription('서버의 리소스를 확인합니다.(개발중)'),
+        .setDescription('서버의 리소스를 확인합니다.'),
     async execute(interaction) {
         await interaction.reply({ content: '🔧 리소스를 측정중입니다...', flags: MessageFlags.Ephemeral });
         const stats = await sysinfo();
-        
-        const embed = new EmbedBuilder()
-            .setTitle('서버 상태')
-            .addFields(
-                { name: 'CPU 사용량', value: stats.cpuUsage },
-                { name: '메모리 사용량', value: stats.memUsage },
-                { name: '디스크 사용량', value: stats.diskUsage},
-                { name: 'CPU 온도', value: stats.cpuTemp }
-            )
-            .setColor(BOT_COLOR)
-            .setTimestamp();
+        const embed = createServerMonitorEmbed(stats.cpuUsage, stats.memUsage, stats.diskUsage, stats.cpuTemp);
 
         await interaction.editReply({
             content: '✅ 서버 리소스 측정 완료!'
