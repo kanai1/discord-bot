@@ -16,7 +16,8 @@ module.exports = {
             .addFields(
                 { name: 'CPU 사용량', value: stats.cpuUsage },
                 { name: '메모리 사용량', value: stats.memUsage },
-                { name: '디스크 사용량', value: stats.diskUsage}
+                { name: '디스크 사용량', value: stats.diskUsage},
+                { name: 'CPU 온도', value: stats.cpuTemp }
             )
             .setColor(BOT_COLOR)
             .setTimestamp();

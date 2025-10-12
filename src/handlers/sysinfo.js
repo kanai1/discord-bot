@@ -1,8 +1,33 @@
+function getCPUUsage() {
+    const res = fetch('http://glances:61208/api/4/cpu');
+    const data = res.json();
+    return data.total + '%';
+}
+
+function getMemUsage() {
+    const res = fetch('http://glances:61208/api/4/mem');
+    const data = res.json();
+    return data.percent + '%';
+}
+
+function getDiskUsage() {
+    const res = fetch('http://glances:61208/api/4/fs');
+    const data = res.json();
+    return data[0].percent + '%';
+}
+
+function getCPUTemp() {
+    const res = fetch('http://glances:61208/api/4/sensors');
+    const data = res.json();
+    return data[0].current + '°C';
+}
+
 module.exports = async function getSystemStats() {
-    // 예시 시스템 정보 (실제 구현은 필요에 따라 다름)
+    
     return {
-        cpuUsage: '15.75%',
-        memUsage: '52.76%',
-        diskUsage: '24.17%',
+        cpuUsage: getCPUUsage(),
+        memUsage: getMemUsage(),
+        diskUsage: getDiskUsage(),
+        cpuTemp: getCPUTemp()
     };
 }
