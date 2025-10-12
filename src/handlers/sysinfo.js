@@ -19,7 +19,7 @@ async function getDiskUsage() {
 async function getCPUTemp() {
     const res = await fetch('http://glances:61208/api/4/sensors');
     const data = res.json();
-    return data[0].current + '°C';
+    return data[0].value + '°C';
 }
 
 module.exports = async function getSystemStats() {
