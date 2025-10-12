@@ -1,3 +1,4 @@
+const path = require('path');
 const {EmbedBuilder} = require('discord.js');
 const { BOT_COLOR } = require(path.join(process.cwd(), 'configs/constants'));
 
