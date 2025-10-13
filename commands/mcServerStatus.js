@@ -20,7 +20,7 @@ module.exports = {
             response.tps = await rcon.send('tps');
             response.players = await rcon.send('list');
             const playersMatch = response.players.match(/There are (\d+) of a max of (\d+) players/);
-            const tpsMatch = response.tps.match(/TPS from last 1m, 5m, 15m: ([\d.]+), ([\d.]+), ([\d.]+)/);
+            const tpsMatch = response.tps.match(/TPS from last 1m, 5m, 15m: (\d+\.?\d*), (\d+\.?\d*), (\d+\.?\d*)/);
             if (tpsMatch) {
                 response.tps = parseFloat(tpsMatch[1]);
             }
