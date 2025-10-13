@@ -17,14 +17,14 @@ function getBotClient() {
     return botClient;
 }
 
-function getRconClient() {
+async function getRconClient() {
     if (!rconClient) {
         rconClient = new Rcon({
             host: process.env.RCON_HOST,
             port: process.env.RCON_PORT,
             password: process.env.RCON_PASSWORD,
         });
-        rconClient.connect().catch(console.error);
+        await rconClient.connect().catch(console.error);
     }
     return rconClient;
 }

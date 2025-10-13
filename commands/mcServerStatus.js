@@ -9,7 +9,7 @@ module.exports = {
         .setDescription('마인크래프트 서버의 상태를 모니터링합니다.'),
     async execute(interaction) {
         await interaction.reply({ content: '🔧 서버 정보를 확인중입니다.'});
-        const rcon = getRconClient();
+        const rcon = await getRconClient();
         let response = {
             tps: -1, 
             players: '0 / 0'
