@@ -23,6 +23,7 @@ module.exports = {
             const tpsMatch = response.tps.match(/TPS from last 1m, 5m, 15m: (\d+\.?\d*), (\d+\.?\d*), (\d+\.?\d*)/);
             if (tpsMatch) {
                 response.tps = parseFloat(tpsMatch[1]);
+                console.log(tpsMatch);
             }
             else if (playersMatch) {
                 response.players = `${playersMatch[1]} / ${playersMatch[2]}`;
