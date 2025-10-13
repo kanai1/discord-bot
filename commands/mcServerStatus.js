@@ -21,15 +21,18 @@ module.exports = {
             response.players = await rcon.send('list');
             const playersMatch = response.players.match(/There are (\d+) of a max of (\d+) players/);
             const tpsMatch = response.tps.match(/TPS from last 1m, 5m, 15m: (\d+\.?\d*), (\d+\.?\d*), (\d+\.?\d*)/);
+            console.log(tpsMatch);
             if (tpsMatch) {
                 response.tps = parseFloat(tpsMatch[1]);
-                console.log(tpsMatch);
             }
-            else if (playersMatch) {
+            else {
+                console.error('tps response parsing error');
+                response.tps = -1;
+            }
+            if (playersMatch) {
                 response.players = `${playersMatch[1]} / ${playersMatch[2]}`;
             } else {
-                console.error('respnse parsing error');
-                response.tps = -1;
+                console.error('list respnse parsing error');
                 response.players = '알 수 없음';
             }
         } catch (error) {
