@@ -1,5 +1,5 @@
 const path = require('path');
-const { SlashCommandBuilder, MessageFlags } = require('discord.js');
+const { SlashCommandBuilder } = require('discord.js');
 const { getRconClient } = require(path.join(process.cwd(), 'src/client'));
 const { createMCServerStatusEmbed } = require(path.join(process.cwd(), 'src/handlers/embedMaker'));
 
@@ -8,12 +8,13 @@ module.exports = {
         .setName('mcserverstatus')
         .setDescription('마인크래프트 서버의 상태를 모니터링합니다.'),
     async execute(interaction) {
-        await interaction.reply({ content: '🔧 서버 정보를 확인중입니다.', flags: MessageFlags.Ephemeral });
+        await interaction.reply({ content: '🔧 서버 정보를 확인중입니다.'});
         const rcon = getRconClient();
         let response;
         
         try {
-            response.tps = await rcon.send('tps');
+            response.tps = '20';
+            // response.tps = await rcon.send('tps');
             response.players = await rcon.send('list');
             const match = response.players.match(/There are (\d+) of a max of (\d+) players/);
             if (match) {
