@@ -1,7 +1,7 @@
 require('dotenv').config();
 const path = require('path');
 
-const { getClient } = require(path.join(process.cwd(), 'src/client'));
+const { getBotClient } = require(path.join(process.cwd(), 'src/client'));
 const createExpressServer = require(path.join(
     process.cwd(),
     'src/server/server'
@@ -11,7 +11,7 @@ const registerCommandHandler = require(path.join(
     'src/handlers/commandHandler'
 ));
 
-const client = getClient();
+const client = getBotClient();
 registerCommandHandler(client);
 
 // 봇이 준비되었을 때

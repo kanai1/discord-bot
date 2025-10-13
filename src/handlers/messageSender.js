@@ -1,6 +1,6 @@
 const path = require('path');
-const { getClient } = require(path.join(process.cwd(), 'src/client'));
-client = getClient();
+const { getBotClient } = require(path.join(process.cwd(), 'src/client'));
+client = getBotClient();
 
 
 module.exports = { 
