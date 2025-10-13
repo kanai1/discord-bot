@@ -8,7 +8,7 @@ module.exports = {
         .setDescription('마인크래프트 서버를 종료합니다.'),
     async execute(interaction) {
         await interaction.reply({ content: '🔧 서버 인원을 확인중입니다...'});
-        const rcon = getRconClient();
+        const rcon = await getRconClient();
         let response;
 
         let isShutdown = false;
