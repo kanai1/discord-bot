@@ -17,13 +17,18 @@ module.exports = {
         
         try {
             response.tps = '20';
-            // response.tps = await rcon.send('tps');
+            response.tps = await rcon.send('tps');
             response.players = await rcon.send('list');
-            const match = response.players.match(/There are (\d+) of a max of (\d+) players/);
-            if (match) {
-                response.players = `${match[1]} / ${match[2]}`;
+            const playersMatch = response.players.match(/There are (\d+) of a max of (\d+) players/);
+            const tpsMatch = response.tps.match(/TPS from last 1m, 5m, 15m: ([\d.]+), ([\d.]+), ([\d.]+)/);
+            if (tpsMatch) {
+                response.tps = parseFloat(tpsMatch[1]);
+            }
+            else if (playersMatch) {
+                response.players = `${playersMatch[1]} / ${playersMatch[2]}`;
             } else {
-                console.error('접속자 수를 파악할 수 없습니다.');
+                console.error('respnse parsing error');
+                response.tps = -1;
                 response.players = '알 수 없음';
             }
         } catch (error) {
