@@ -1,7 +1,7 @@
 const path = require('path');
 const { SlashCommandBuilder, MessageFlags } = require('discord.js');
 const sysinfo = require(path.join(process.cwd(), 'src/handlers/sysinfo'));
-const createServerMonitorEmbed = require(path.join(process.cwd(), 'src/handlers/embedMaker'));
+const { createServerMonitorEmbed } = require(path.join(process.cwd(), 'src/handlers/embedMaker'));
 
 module.exports = {
     data: new SlashCommandBuilder()
