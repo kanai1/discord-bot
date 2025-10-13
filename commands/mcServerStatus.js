@@ -20,9 +20,8 @@ module.exports = {
             response.tps = await rcon.send('tps');
             response.players = await rcon.send('list');
             const playersMatch = response.players.match(/There are (\d+) of a max of (\d+) players/);
-            response.tps = response.tps.replace(/§./g, '');
+            response.tps = response.tps.replace(/§./g, ''); // 색상코드 제거
             const tpsMatch = response.tps.match(/TPS from last 1m, 5m, 15m:\s*(\d+\.?\d*),\s*(\d+\.?\d*),\s*(\d+\.?\d*)/);
-            console.log(response.tps, tpsMatch);
             if (tpsMatch) {
                 response.tps = parseFloat(tpsMatch[1]);
             }
@@ -49,5 +48,7 @@ module.exports = {
         });
 
         await interaction.followUp({ embeds: [embed] });
+
+        console.log(`마인크래프트 서버 상태 전송 완료 (요청자: ${interaction.user.tag})`);
     },
 };

@@ -11,6 +11,8 @@ module.exports = {
         const rcon = getRconClient();
         let response;
 
+        let isShutdown = false;
+
         try {
             response = await rcon.send('list');
         } catch (error) {
@@ -20,11 +22,18 @@ module.exports = {
         }
 
         const match = response.match(/There are (\d+) of a max of (\d+) players/);
-        if (match) {
+        if  (!match) {
+            console.error('접속자 수 파싱 실패:', response);
+            await interaction.editReply({
+                content: '❌ 서버연결에 실패했습니다. 관리자에게 문의하세요.'
+            });
+        } else {
             if (match[1] == 0) {
                 try {
                     await rcon.send('stop');
                     await interaction.editReply({ content: '✅ 마인크래프트 서버를 성공적으로 종료했습니다.' });
+                    isShutdown = true;
+                    console.log(`마인크래프트 서버 종료 완료 (요청자: ${interaction.user.tag})`);
                 } catch (error) {
                     console.error('서버 종료 명령어 실행 실패:', error);
                     await interaction.editReply({ content: '❌ 서버 종료에 실패했습니다. 관리자에게 문의하세요.' });
@@ -32,11 +41,9 @@ module.exports = {
             } else {
                 await interaction.editReply({ content: `❌ 서버에 현재 ${match[1]}명의 유저가 접속중입니다. 모든 유저가 퇴장한 후 다시 시도해주세요.` });
             }
-        } else {
-            console.error('접속자 수를 파악할 수 없습니다.');
-            await interaction.editReply({
-                content: '❌ 서버연결에 실패했습니다. 관리자에게 문의하세요.'
-            });
+        }
+        if (!isShutdown) {
+            console.log(`마인크래프트 서버 종료 실패 (요청자: ${interaction.user.tag})`);
         }
 
     },
