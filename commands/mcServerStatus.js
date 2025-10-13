@@ -10,7 +10,10 @@ module.exports = {
     async execute(interaction) {
         await interaction.reply({ content: '🔧 서버 정보를 확인중입니다.'});
         const rcon = getRconClient();
-        let response;
+        let response = {
+            tps: -1, 
+            players: '0 / 0'
+        };
         
         try {
             response.tps = '20';
