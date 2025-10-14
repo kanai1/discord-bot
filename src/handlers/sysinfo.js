@@ -1,23 +1,26 @@
+const monitorLink = 'http://glances:61208/api/4';
+
 async function getCPUUsage() {
-    const res = await fetch('http://glances:61208/api/4/cpu');
+    const res = await fetch(`${monitorLink}/cpu`);
     const data = await res.json();
+    console.log(data);
     return data.total;
 }
 
 async function getMemUsage() {
-    const res = await fetch('http://glances:61208/api/4/mem');
+    const res = await fetch(`${monitorLink}/mem`);
     const data = await res.json();
     return data.percent;
 }
 
 async function getDiskUsage() {
-    const res = await fetch('http://glances:61208/api/4/fs');
+    const res = await fetch(`${monitorLink}/fs`);
     const data = await res.json();
     return data[0].percent;
 }
 
 async function getCPUTemp() {
-    const res = await fetch('http://glances:61208/api/4/sensors');
+    const res = await fetch(`${monitorLink}/sensors`);
     const data = await res.json();
     return data[0].value;
 }
