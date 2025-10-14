@@ -3,7 +3,6 @@ const monitorLink = 'http://glances:61208/api/4';
 async function getCPUUsage() {
     const res = await fetch(`${monitorLink}/cpu`);
     const data = await res.json();
-    console.log(data);
     return data.total;
 }
 
