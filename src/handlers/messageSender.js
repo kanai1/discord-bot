@@ -26,7 +26,7 @@ async function sendMessagetoUser (userID, message) {
         }
 
         await user.send(message);
-        console.log(`Message sent to user ${userID}: ${message}`);
+        console.log(`Message sent to user ${user.tag}(${userID}): ${message}`);
         return { success: true };
     } catch (err) {
         console.error(`Failed to send message: ${err.message}`);
