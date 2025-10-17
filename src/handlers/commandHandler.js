@@ -3,6 +3,7 @@ const path = require('path');
 const { Collection } = require('discord.js');
 
 module.exports = (client) => {
+    client.commands = new Collection();
     // commands 폴더 경로
     const commandsPath = path.join(process.cwd(), 'commands');
 
