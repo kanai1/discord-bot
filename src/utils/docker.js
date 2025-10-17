@@ -1,9 +1,9 @@
 const { exec } = require('child_process');
 
-function runDockerCompose(command, composePath) {
+function runDockerComposeUp(composePath) {
     return new Promise((resolve, reject) => {
-        console.log(`docker compose -f ${composePath} ${command}`);
-        exec(`docker compose -f ${composePath} ${command}`, (error, stdout, stderr) => {
+        console.log(`docker compose up -f ${composePath}`);
+        exec(`docker compose up -f ${composePath}`, (error, stdout, stderr) => {
             if (error) {
                 reject(stderr || error.message);
             } else {
@@ -13,4 +13,4 @@ function runDockerCompose(command, composePath) {
     });
 }
 
-module.exports = { runDockerCompose };
+module.exports = { runDockerComposeUp };

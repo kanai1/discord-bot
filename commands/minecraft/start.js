@@ -1,5 +1,5 @@
 const path = require('path');
-const { runDockerCompose } = require(path.join(process.cwd(), 'src/utils/docker'));
+const { runDockerComposeUp } = require(path.join(process.cwd(), 'src/utils/docker'));
 
 module.exports = {
     name: 'start',
@@ -10,7 +10,7 @@ module.exports = {
 
         const composeFile = path.join(process.env.HOST_PATH, 'mc/docker-compose.yml'); // compose 파일 경로
         try {
-            const result = await runDockerCompose('up -d', composeFile);
+            const result = await runDockerComposeUp(composeFile);
             await interaction.editReply({
                 content: `✅ 서버 실행 완료!\n\`\`\`${result}\`\`\``,
             });
