@@ -1,5 +1,4 @@
 const path = require('path');
-const { getRconClient } = require(path.join(process.cwd(), 'src/client'));
 
 module.exports = {
     name: 'start',

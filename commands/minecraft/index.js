@@ -16,7 +16,7 @@ module.exports = {
     data: baseCommand,
     async execute(interaction) {
         const sub = subcommands.find(
-            (s) => s.name === interaction.options.getSubcommand()
+            (s) => s.name == interaction.options.getSubcommand()
         );
         if (!sub) return interaction.reply('❌ 알 수 없는 명령어입니다.');
         await sub.execute(interaction);
