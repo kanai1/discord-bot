@@ -1,7 +1,7 @@
 const path = require('path');
 const { SlashCommandBuilder } = require('discord.js');
 const { getRconClient } = require(path.join(process.cwd(), 'src/client'));
-const { createMCServerStatusEmbed } = require(path.join(process.cwd(), 'src/handlers/embedMaker'));
+const { createMCServerStatusEmbed } = require(path.join(process.cwd(), 'src/utils/embedMaker'));
 
 module.exports = {
     data: new SlashCommandBuilder()

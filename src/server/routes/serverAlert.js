@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
-const { createServerMonitorEmbed } = require(path.join(process.cwd(), 'src/handlers/embedMaker'));
-const { sendMessagetoUser } = require(path.join(process.cwd(), 'src/handlers/messageSender'));
+const { createServerMonitorEmbed } = require(path.join(process.cwd(), 'src/utils/embedMaker'));
+const { sendMessagetoUser } = require(path.join(process.cwd(), 'src/utils/messageSender'));
 
 module.exports = function testRoute() {
     const router = express.Router();
