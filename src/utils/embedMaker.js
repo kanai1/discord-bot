@@ -24,7 +24,8 @@ function createMCServerStatusEmbed(tps, players) {
         .setTitle('마인크래프트 서버 상태')
         .addFields(
             { name: 'TPS', value: tps },
-            { name: '접속자 수', value: players }
+            { name: '접속자 수', value: players },
+            { name: '서버 주소', value: process.env.MC_SERVER_IP }
         )
         .setColor(BOT_COLOR)
         .setTimestamp();
