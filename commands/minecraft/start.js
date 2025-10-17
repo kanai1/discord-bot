@@ -1,11 +1,10 @@
 const path = require('path');
-const { SlashCommandBuilder } = require('discord.js');
 const { getRconClient } = require(path.join(process.cwd(), 'src/client'));
 
 module.exports = {
-    data: new SlashCommandBuilder()
-        .setName('shutdownmcserver')
-        .setDescription('마인크래프트 서버를 종료합니다.'),
+    name: 'stop',
+    description: '마인크래프트 서버를 종료합니다. (서버에 접속중인 유저가 없어야 합니다.)',
+    
     async execute(interaction) {
         await interaction.reply({ content: '🔧 서버 인원을 확인중입니다...'});
         const rcon = await getRconClient();

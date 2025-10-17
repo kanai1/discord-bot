@@ -1,12 +1,11 @@
 const path = require('path');
-const { SlashCommandBuilder } = require('discord.js');
 const { getRconClient } = require(path.join(process.cwd(), 'src/client'));
 const { createMCServerStatusEmbed } = require(path.join(process.cwd(), 'src/utils/embedMaker'));
 
 module.exports = {
-    data: new SlashCommandBuilder()
-        .setName('mcserverstatus')
-        .setDescription('마인크래프트 서버의 상태를 모니터링합니다.'),
+    name: 'status',
+    description: '마인크래프트 서버의 상태를 모니터링합니다.',
+
     async execute(interaction) {
         await interaction.reply({ content: '🔧 서버 정보를 확인중입니다.'});
         const rcon = await getRconClient();
