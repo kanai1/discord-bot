@@ -8,6 +8,7 @@ services:
       - ./:/usr/src/app   # 현재 프로젝트 디렉토리를 컨테이너에 마운트
       - /usr/src/app/node_modules  # node_modules는 호스트에 영향 안 주도록
       - /var/run/docker.sock:/var/run/docker.sock # 도커 컴포즈를 봇이 올릴 수 있도록
+      - /home/ksh30918/mc/docker-compose.yml:/usr/src/app/mc-docker-compose.yml # 마인크래프트 도커 컴포즈 파일 매핑
     env_file:
       - .env   # 환경변수 파일
     command: sh -c "npm install && npm run start"

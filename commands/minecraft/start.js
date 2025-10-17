@@ -8,7 +8,7 @@ module.exports = {
     async execute(interaction) {
         await interaction.reply({ content: '🔧 서버를 시작중입니다...'});
 
-        const composeFile = path.join(process.env.HOST_PATH, 'mc/docker-compose.yml'); // compose 파일 경로
+        const composeFile = '/usr/src/app/mc-docker-compose.yml'; // compose 파일 경로
         try {
             const result = await runDockerComposeUp(composeFile);
             await interaction.editReply({
