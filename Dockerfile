@@ -1,5 +1,5 @@
-FROM node:18
+FROM node:22-alpine
 WORKDIR /app
 
-# 필요 패키지 설치
-RUN apt-get update && apt-get install -y docker-cli
+# docker CLI 설치
+RUN apk add --no-cache docker-cli

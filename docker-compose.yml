@@ -1,6 +1,6 @@
 services:
   bot:
-    image: node:22-alpine
+    build: .
     container_name: discord_bot
     working_dir: /usr/src/app
     restart: always
