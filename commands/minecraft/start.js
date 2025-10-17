@@ -1,4 +1,5 @@
 const path = require('path');
+const { runDockerCompose } = require(path.join(process.cwd(), 'src/utils/docker'));
 
 module.exports = {
     name: 'start',
