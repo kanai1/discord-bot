@@ -1,5 +1,5 @@
 const path = require('path');
-const { baseCommand } = require(path.join(process.cwd(), 'commands/minecraft/basecommand'));
+const { baseCommand } = require(path.join(process.cwd(), 'commands/minecraft/baseCommand'));
 const start = require(path.join(process.cwd(), 'commands/minecraft/start'));
 const stop = require(path.join(process.cwd(), 'commands/minecraft/stop'));
 const status = require(path.join(process.cwd(), 'commands/minecraft/status'));
