@@ -1,11 +1,10 @@
 const path = require('path');
 const { baseCommand } = require(path.join(process.cwd(), 'commands/minecraft/basecommand'));
-//const start = require(path.join(process.cwd(), 'commands/minecraft/start'));
+const start = require(path.join(process.cwd(), 'commands/minecraft/start'));
 const stop = require(path.join(process.cwd(), 'commands/minecraft/stop'));
 const status = require(path.join(process.cwd(), 'commands/minecraft/status'));
 
-// const subcommands = [start, stop, status];
-const subcommands = [stop, status];
+const subcommands = [start, stop, status];
 
 for (const sub of subcommands) {
     baseCommand.addSubcommand((cmd) =>
