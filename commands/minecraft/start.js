@@ -11,7 +11,7 @@ module.exports = {
         const composeFile = '/var/mc-docker-compose.yml'; // compose 파일 경로
 
         try {
-            const result = await runDockerComposeUp(composeFile);
+            const result = await runDockerComposeUp(composeFile, "mc");
             await interaction.editReply({
                 content: `✅ 서버 실행 완료!\n\`\`\`${result}\`\`\``,
             });
